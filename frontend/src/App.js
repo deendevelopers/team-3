@@ -4,18 +4,13 @@ import React, { Component } from 'react';
 import styled from '@emotion/styled';
 
 import Header from './components/Header';
+import Button from './components/Button';
 
-const Button = styled.button`
-  background-color: blue;
-  padding: 10px 20px;
-  width: 300px;
-  height: 50px;
-  border-radius: 150px;
-  border: none;
-  margin-top: 64px;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
+const MiddleOfPage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `;
 
 class App extends Component {
@@ -49,10 +44,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header />
-        <Button onClick={this.onSetupClick}>Setup</Button>
-      </div>
+      <MiddleOfPage className="stack">
+        <Header>
+          <h1>Salah Sync.</h1>
+          <h2>Set up your calendar</h2>
+          <Button onClick={this.onSetupClick}>Setup</Button>
+        </Header>
+      </MiddleOfPage>
     );
   }
 }
