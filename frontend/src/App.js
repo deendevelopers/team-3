@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 
+import blob from '../public/blob-shape.svg';
+
 import Header from './components/Header';
 import Button from './components/Button';
 
@@ -11,6 +13,13 @@ const MiddleOfPage = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+`;
+
+const Blob = styled.div`
+  width: 600px;
+  height: 600px;
+  background-image: url(${blob});
+  background-size: cover;
 `;
 
 class App extends Component {
@@ -45,6 +54,7 @@ class App extends Component {
   render() {
     return (
       <MiddleOfPage className="stack">
+        <Blob />
         <Header>
           <h1>Salah Sync.</h1>
           <h2>Set up your calendar</h2>
