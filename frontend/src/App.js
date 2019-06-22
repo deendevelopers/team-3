@@ -19,31 +19,31 @@ const Button = styled.button`
 `;
 
 class App extends Component {
-  state = { gapiReady: false };
+  authInit = () => {
+    try {
+      gapi.auth2.init({
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        scope:
+          'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'
+      });
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
 
   onSetupClick = async () => {
-    if (this.state.gapiReady) {
+    try {
       const googleAuth = await gapi.auth2.getAuthInstance();
       googleAuth.signIn();
+    } catch (e) {
+      throw new Error(e);
     }
   };
 
   componentDidMount() {
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/platform.js';
-
-    script.onload = () => {
-      gapi.load('auth2', () => {
-        this.setState({ gapiReady: true }, () => {
-          gapi.auth2.init({
-            client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-            scope:
-              'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'
-          });
-        });
-      });
-    };
-
+    script.onload = () => gapi.load('auth2', this.authInit);
     document.body.appendChild(script);
   }
 
