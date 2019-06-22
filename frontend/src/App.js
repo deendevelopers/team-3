@@ -18,11 +18,15 @@ const Button = styled.button`
 `;
 
 class App extends Component {
+  onSetupClick = () => {
+    // todo: auth
+  };
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Button>Setup</Button>
+        <Button onClick={this.onSetupClick}>Setup</Button>
       </div>
     );
   }
