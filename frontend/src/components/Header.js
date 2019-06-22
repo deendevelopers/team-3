@@ -4,9 +4,8 @@ import styled from '@emotion/styled';
 const Hero = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 28em;
+  max-width: 28em;
   padding: 32px;
-  margin: 0 auto;
   text-align: left;
 
   h1 {
@@ -19,13 +18,13 @@ const Hero = styled.div`
 
   h2 {
     font-size: 2.25rem;
-    color: #ab98f5;
+    color: #5198d6;
     letter-spacing: -0.01em;
   }
 
   p {
     font-size: 1.125rem;
-    line-height: 1.66;
+    line-height: 1.6;
     color: #2e3036;
   }
 `;
