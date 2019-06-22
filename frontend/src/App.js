@@ -1,18 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import styled from "@emotion/styled";
+import "./App.css";
+
+import Header from "./components/Header";
+
+const Button = styled.button`
+  background-color: blue;
+  padding: 10px 20px;
+  width: 300px;
+  height: 50px;
+  border-radius: 150px;
+  border: none;
+  margin-top: 64px;
+  color: white;
+  font-size: 18px;
+`;
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header />
+        <Button>Setup</Button>
       </div>
     );
   }
