@@ -8,10 +8,35 @@ body,
   height: 100%;
 }
 
+#root > div {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Work Sans', sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-family: 'anton', sans-serif;
+  text-transform: uppercase;
+  font-size: 6em;
+  letter-spacing: 0.025em;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 2.25rem;
+  color: #5198d6;
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #2e3036;
 }
 
 .full-height {
