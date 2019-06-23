@@ -2,15 +2,16 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from '@reach/router';
 
-import Home from './Home';
 import './index.css';
 
+import Home from './Home';
+import DonePage from './DonePage';
+
 const App = ({ children }) => (
-  <Fragment>
-    <Router>
-      <Home path="/" />
-    </Router>
-  </Fragment>
+  <Router>
+    <Home path="/" />
+    <DonePage path="/done" />
+  </Router>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
