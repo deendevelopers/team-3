@@ -5,7 +5,7 @@ import { Router } from '@reach/router';
 import './index.css';
 
 import Home from './Home';
-import DonePage from './DonePage';
+import DonePage from './pages/DonePage';
 
 import { UserSettingsProvider } from './context/userSettingsContext';
 
