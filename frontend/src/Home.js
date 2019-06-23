@@ -8,13 +8,7 @@ import blob from '../public/blob-shape.svg';
 
 import Header from './components/Header';
 import Button from './components/Button';
-
-const MiddleOfPage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
+import MiddleOfPage from './components/MiddleOfPage';
 
 const Blob = styled.div`
   width: 600px;
@@ -54,7 +48,7 @@ class Home extends Component {
 
   render() {
     return (
-      <MiddleOfPage className="stack">
+      <MiddleOfPage>
         <Blob />
         <Header>
           <Animated animationIn="fadeInUp" isVisible={true}>
