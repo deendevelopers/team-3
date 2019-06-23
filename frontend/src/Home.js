@@ -23,7 +23,7 @@ const Blob = styled.div`
   background-size: cover;
 `;
 
-class App extends Component {
+class Home extends Component {
   authInit = () => {
     try {
       gapi.auth2.init({
@@ -94,4 +94,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
