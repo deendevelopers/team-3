@@ -60,7 +60,7 @@ const Home = () => {
           animationInDelay={450}
           isVisible={true}
         >
-          <h2>Set up your calendar</h2>
+          <h2>Reserve salah time in your calendar</h2>
         </Animated>
 
         <Animated
