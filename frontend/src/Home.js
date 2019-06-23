@@ -19,33 +19,15 @@ const Blob = styled.div`
 `;
 
 const Home = () => {
-  const authInit = () => {
-    try {
-      gapi.auth2.init({
-        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-        scope:
-          'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'
-      });
-    } catch (e) {
-      throw new Error(e);
-    }
-  };
-
   const onSetupClick = async () => {
-    try {
-      const googleAuth = await gapi.auth2.getAuthInstance();
-      googleAuth.signIn().then(e => {
-        navigate('/options');
-      });
-    } catch (e) {
-      throw new Error(e);
-    }
+    fetch('https://spicy-bandana.glitch.me/auth-me', {
+      method: 'get'
+    }).then(async res => {
+      const authUrl = (await res.json()).authUrl;
+      console.log(authUrl);
+      window.location = authUrl;
+    });
   };
-
-  const script = document.createElement('script');
-  script.src = 'https://apis.google.com/js/platform.js';
-  script.onload = () => gapi.load('auth2', authInit);
-  document.body.appendChild(script);
 
   return (
     <MiddleOfPage>
