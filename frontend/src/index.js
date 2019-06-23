@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { Router } from '@reach/router';
+
+import Home from './Home';
 import './index.css';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+const App = ({ children }) => (
+  <Fragment>
+    <Router>
+      <Home path="/" />
+    </Router>
+  </Fragment>
 );
+
+ReactDOM.render(<App />, document.getElementById('root'));
