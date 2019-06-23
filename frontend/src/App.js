@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
+import { Animated } from 'react-animated-css';
 
 import blob from '../public/blob-shape.svg';
 
@@ -56,9 +57,37 @@ class App extends Component {
       <MiddleOfPage className="stack">
         <Blob />
         <Header>
-          <h1>Salah Sync.</h1>
-          <h2>Set up your calendar</h2>
-          <Button onClick={this.onSetupClick}>Setup</Button>
+          <Animated animationIn="fadeInUp" isVisible={true}>
+            <h1>Salah Sync.</h1>
+          </Animated>
+
+          <Animated
+            animationIn="fadeInUp"
+            animationInDelay={450}
+            isVisible={true}
+          >
+            <h2>Set up your calendar</h2>
+          </Animated>
+
+          <Animated
+            animationIn="fadeInUp"
+            animationInDelay={500}
+            isVisible={true}
+          >
+            <p>
+              Salah sync allows you to easily block out slots in your calendar
+              to reserve them for prayer. Sign up and we’ll take care of the
+              rest.
+            </p>
+          </Animated>
+
+          <Animated
+            animationIn="fadeInUp"
+            animationInDelay={700}
+            isVisible={true}
+          >
+            <Button onClick={this.onSetupClick}>Setup</Button>
+          </Animated>
         </Header>
       </MiddleOfPage>
     );
