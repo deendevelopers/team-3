@@ -1,56 +1,66 @@
 /*eslint no-undef: 0*/
 
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import styled from "@emotion/styled";
-import "./App.css";
+import React, { Component } from 'react';
+import styled from '@emotion/styled';
 
-import Header from "./components/Header";
+import blob from '../public/blob-shape.svg';
 
-import gapi from "gapi-client";
+import Header from './components/Header';
+import Button from './components/Button';
 
-const Button = styled.button`
-  background-color: blue;
-  padding: 10px 20px;
-  width: 300px;
-  height: 50px;
-  border-radius: 150px;
-  border: none;
-  margin-top: 64px;
-  color: white;
-  font-size: 18px;
+const MiddleOfPage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+const Blob = styled.div`
+  width: 600px;
+  height: 600px;
+  background-image: url(${blob});
+  background-size: cover;
 `;
 
 class App extends Component {
-  onSetupClick = () => {};
+  authInit = () => {
+    try {
+      gapi.auth2.init({
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        scope:
+          'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'
+      });
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  onSetupClick = async () => {
+    try {
+      const googleAuth = await gapi.auth2.getAuthInstance();
+      googleAuth.signIn();
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
 
   componentDidMount() {
-    //On load, called to load the auth2 library and API client library.
-    // gapi.load("client:auth2", initClient);
-    console.log("hello");
-    // Initialize the API client library
-    function initClient() {
-      gapi.client
-        .init({
-          clientId: process.env.CLIENT_ID,
-          scope:
-            "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events"
-        })
-        .then(function() {
-          // do stuff with loaded APIs
-          console.log("it worked");
-        })
-        .catch(() => console.log("failed"));
-    }
-    gapi.load("client:auth2", initClient);
+    const script = document.createElement('script');
+    script.src = 'https://apis.google.com/js/platform.js';
+    script.onload = () => gapi.load('auth2', this.authInit);
+    document.body.appendChild(script);
   }
 
   render() {
     return (
-      <div className="App">
-        <Header />
-        <Button onClick={this.onSetupClick}>Setup</Button>
-      </div>
+      <MiddleOfPage className="stack">
+        <Blob />
+        <Header>
+          <h1>Salah Sync.</h1>
+          <h2>Set up your calendar</h2>
+          <Button onClick={this.onSetupClick}>Setup</Button>
+        </Header>
+      </MiddleOfPage>
     );
   }
 }
