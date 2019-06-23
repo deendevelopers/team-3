@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import styled from '@emotion/styled';
 import { Animated } from 'react-animated-css';
+import { navigate } from '@reach/router';
 
 import blob from '../public/blob-shape.svg';
 
@@ -17,8 +18,8 @@ const Blob = styled.div`
   background-size: cover;
 `;
 
-class Home extends Component {
-  authInit = () => {
+const Home = () => {
+  const authInit = () => {
     try {
       gapi.auth2.init({
         client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
@@ -30,62 +31,59 @@ class Home extends Component {
     }
   };
 
-  onSetupClick = async () => {
+  const onSetupClick = async () => {
     try {
       const googleAuth = await gapi.auth2.getAuthInstance();
-      googleAuth.signIn();
+      googleAuth.signIn().then(e => {
+        navigate('/options');
+      });
     } catch (e) {
       throw new Error(e);
     }
   };
 
-  componentDidMount() {
-    const script = document.createElement('script');
-    script.src = 'https://apis.google.com/js/platform.js';
-    script.onload = () => gapi.load('auth2', this.authInit);
-    document.body.appendChild(script);
-  }
+  const script = document.createElement('script');
+  script.src = 'https://apis.google.com/js/platform.js';
+  script.onload = () => gapi.load('auth2', authInit);
+  document.body.appendChild(script);
 
-  render() {
-    return (
-      <MiddleOfPage>
-        <Blob />
-        <Header>
-          <Animated animationIn="fadeInUp" isVisible={true}>
-            <h1>Salah Sync.</h1>
-          </Animated>
+  return (
+    <MiddleOfPage>
+      <Blob />
+      <Header>
+        <Animated animationIn="fadeInUp" isVisible={true}>
+          <h1>Salah Sync.</h1>
+        </Animated>
 
-          <Animated
-            animationIn="fadeInUp"
-            animationInDelay={450}
-            isVisible={true}
-          >
-            <h2>Set up your calendar</h2>
-          </Animated>
+        <Animated
+          animationIn="fadeInUp"
+          animationInDelay={450}
+          isVisible={true}
+        >
+          <h2>Set up your calendar</h2>
+        </Animated>
 
-          <Animated
-            animationIn="fadeInUp"
-            animationInDelay={500}
-            isVisible={true}
-          >
-            <p>
-              Salah sync allows you to easily block out slots in your calendar
-              to reserve them for prayer. Sign up and we’ll take care of the
-              rest.
-            </p>
-          </Animated>
+        <Animated
+          animationIn="fadeInUp"
+          animationInDelay={500}
+          isVisible={true}
+        >
+          <p>
+            Salah sync allows you to easily block out slots in your calendar to
+            reserve them for prayer. Sign up and we’ll take care of the rest.
+          </p>
+        </Animated>
 
-          <Animated
-            animationIn="fadeInUp"
-            animationInDelay={700}
-            isVisible={true}
-          >
-            <Button onClick={this.onSetupClick}>Setup</Button>
-          </Animated>
-        </Header>
-      </MiddleOfPage>
-    );
-  }
-}
+        <Animated
+          animationIn="fadeInUp"
+          animationInDelay={700}
+          isVisible={true}
+        >
+          <Button onClick={onSetupClick}>Setup</Button>
+        </Animated>
+      </Header>
+    </MiddleOfPage>
+  );
+};
 
 export default Home;
