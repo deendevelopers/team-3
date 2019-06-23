@@ -7,6 +7,8 @@ import './index.css';
 import Home from './Home';
 import DonePage from './DonePage';
 
+import { UserSettingsProvider } from './context/userSettingsContext';
+
 const App = ({ children }) => (
   <Router>
     <Home path="/" />
@@ -14,4 +16,9 @@ const App = ({ children }) => (
   </Router>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <UserSettingsProvider>
+    <App />
+  </UserSettingsProvider>,
+  document.getElementById('root')
+);
